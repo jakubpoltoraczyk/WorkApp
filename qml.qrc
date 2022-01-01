@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+    <file>configuration/ColorConstants.qml</file>
+    <file>configuration/qmldir</file>
+    <file>configuration/SharedConstants.qml</file>
+    <file>main.qml</file>
+    <file>rectanglebutton/qml/RectangleButton.qml</file>
+    <file>rectanglesolidborder/RectangleSolidBorder.qml</file>
+    </qresource>
+</RCC>
