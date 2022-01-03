@@ -1,21 +1,31 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
 
-import "rectanglebutton/qml"
 import "configuration"
+import "rectanglebutton/qml"
 
 Window {
     id: loginWindow
-    width: 400
+    width: 450
     height: 400
     color: SharedConstants.defaultWindowColor
     visible: true
 
     Row {
         id: buttonsRow
-        x: 180
-        y: 280
         spacing: 20
+        anchors {
+            bottom: parent.bottom
+            horizontalCenter: parent.horizontalCenter
+            leftMargin: 50
+            rightMargin: 50
+            bottomMargin: 50
+        }
+
+        RectangleButton {
+            id: registerButton
+            text: "Register"
+        }
 
         RectangleButton {
             id: loginButton
