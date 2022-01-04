@@ -1,2 +1,3 @@
 singleton ColorConstants 1.0 ColorConstants.qml
+singleton InputComponentConstants 1.0 InputComponentConstants.qml
 singleton SharedConstants 1.0 SharedConstants.qml

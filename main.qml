@@ -1,7 +1,9 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
+import InputComponentDataset 1.0
 
 import "configuration"
+import "inputcomponent/qml"
 import "rectanglebutton/qml"
 
 Window {
@@ -11,14 +13,35 @@ Window {
     color: SharedConstants.defaultWindowColor
     visible: true
 
+    Column {
+        id: inputCompomentColumn
+        spacing: 15
+        anchors {
+            horizontalCenter: parent.horizontalCenter
+            verticalCenter: parent.verticalCenter
+        }
+
+        InputComponent {
+            id: loginInputComponent
+            labelText: "Login:"
+            placeholderText: "Enter your login"
+            mode: InputComponentDataset.Mode.NORMAL
+        }
+
+        InputComponent {
+            id: passwordInputComponent
+            labelText: "Password:"
+            placeholderText: "Enter your password"
+            mode: InputComponentDataset.Mode.PASSWORD
+        }
+    }
+
     Row {
         id: buttonsRow
         spacing: 20
         anchors {
             bottom: parent.bottom
             horizontalCenter: parent.horizontalCenter
-            leftMargin: 50
-            rightMargin: 50
             bottomMargin: 50
         }
 

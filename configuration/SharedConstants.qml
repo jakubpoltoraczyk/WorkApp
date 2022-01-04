@@ -9,7 +9,7 @@ QtObject {
     readonly property color defaultTextColor: ColorConstants.black
 
     /** Default font pixel size */
-    readonly property int defaultFontPixelSize: 12
+    readonly property int defaultFontPixelSize: 15
 
     /** Default font family */
     readonly property string defaultFontFamily: "FreeSans" 

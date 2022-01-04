@@ -7,10 +7,13 @@ set(CMAKE_CXX_STANDARD 17)
 add_executable(${PROJECT_NAME}
     
     applicationservices/applicationservices.cpp
+    inputcomponent/cpp/inputcomponentservice.cpp
     main.cpp
     rectanglebutton/cpp/rectanglebuttonservice.cpp
 
     applicationservices/applicationservices.h
+    dataset/inputcomponentdataset.h
+    inputcomponent/cpp/inputcomponentservice.h
     rectanglebutton/cpp/rectanglebuttonservice.h
 
     qml.qrc
