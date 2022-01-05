@@ -1,8 +1,8 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
 
-import "../../rectanglesolidborder"
-import "../../configuration"
+import "../rectanglesolidborder"
+import "../configuration"
 
 Button {
     id: rectangleButton
@@ -42,14 +42,10 @@ Button {
         solidBorder.rightBorderColor = ColorConstants.darkGrey
     }
 
-    /** Called, when button has been created */
-    Component.onCompleted: {
-        mouseArea.released.connect(RectangleButtonService.onReleased)
-    }
-
     MouseArea {
         id: mouseArea
         hoverEnabled: true
+        propagateComposedEvents: true
         anchors.fill: parent
 
         /** Called, when mouse entered the mouse area */
@@ -76,6 +72,7 @@ Button {
                 buttonBackground.color = ColorConstants.lightGrey
             }
             setReleasedStyle()
+            rectangleButton.released()
         }
     }
 

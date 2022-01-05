@@ -3,7 +3,7 @@ import QtQuick.Controls 2.12
 import QtGraphicalEffects 1.0
 import InputComponentDataset 1.0
 
-import "../../configuration"
+import "../configuration"
 
 Row {
     id: inputComponent
@@ -13,15 +13,13 @@ Row {
     property int mode: InputComponentDataset.Mode.NORMAL
 
     /** Label text displayed in the input component */
-    property alias labelText: inputComponentLabel.text
+    property string labelText: ""
 
-    /** Placeholder text of the text field displayed in the input component */
-    property alias placeholderText: inputComponentField.placeholderText
+    /** Placeholder field text displayed in the input component */
+    property string placeholderFieldText: ""
 
-    /** Called, when input component has been created */
-    Component.onCompleted: {
-        inputComponentField.editingFinished.connect(InputComponentService.onEditingFinished)
-    }
+    /** type:string Content text of the input component */
+    property alias contentText: inputComponentField.text
 
     Label {
         id: inputComponentLabel
@@ -30,6 +28,7 @@ Row {
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignLeft
         color: SharedConstants.defaultTextColor
+        text: labelText
         font {
             pixelSize: SharedConstants.defaultFontPixelSize
             family: SharedConstants.defaultFontFamily
@@ -43,6 +42,7 @@ Row {
         maximumLength: InputComponentConstants.maximumTextLength
         color: SharedConstants.defaultTextColor
         echoMode: mode == InputComponentDataset.Mode.NORMAL ? TextInput.Normal : TextInput.Password
+        placeholderText: placeholderFieldText
         font {
             pixelSize: SharedConstants.defaultFontPixelSize
             family: SharedConstants.defaultFontFamily

@@ -1,15 +1,8 @@
 #include "applicationservices.h"
 
 ApplicationServices::ApplicationServices()
-    : rectangleButtonService(std::make_shared<RectangleButtonService>()),
-      inputComponentService(std::make_shared<InputComponentService>()) {}
+    : loginWindowService(std::make_shared<LoginWindowService>()) {}
 
-std::shared_ptr<RectangleButtonService>
-ApplicationServices::getRectangleButtonService() const {
-  return rectangleButtonService;
-}
-
-std::shared_ptr<InputComponentService>
-ApplicationServices::getInputComponentService() const {
-  return inputComponentService;
+std::shared_ptr<LoginWindowService> ApplicationServices::getLoginWindowService() const {
+  return loginWindowService;
 }

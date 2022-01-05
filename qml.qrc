@@ -4,11 +4,12 @@
     <file>configuration/InputComponentConstants.qml</file>
     <file>configuration/qmldir</file>
     <file>configuration/SharedConstants.qml</file>
-    <file>inputcomponent/qml/images/visibilityFalseEye.png</file>
-    <file>inputcomponent/qml/images/visibilityTrueEye.png</file>
-    <file>inputcomponent/qml/InputComponent.qml</file>
+    <file>inputcomponent/images/visibilityFalseEye.png</file>
+    <file>inputcomponent/images/visibilityTrueEye.png</file>
+    <file>inputcomponent/InputComponent.qml</file>
+    <file>loginwindow/qml/LoginWindow.qml</file>
     <file>main.qml</file>
-    <file>rectanglebutton/qml/RectangleButton.qml</file>
+    <file>rectanglebutton/RectangleButton.qml</file>
     <file>rectanglesolidborder/RectangleSolidBorder.qml</file>
     </qresource>
 </RCC>

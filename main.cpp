@@ -21,15 +21,11 @@ int main(int argc, char *argv[]) {
   ApplicationServices applicationServices;
 
   engine.rootContext()->setContextProperty(
-      "RectangleButtonService",
-      applicationServices.getRectangleButtonService().get());
-  engine.rootContext()->setContextProperty(
-      "InputComponentService",
-      applicationServices.getInputComponentService().get());
+      "loginWindowService", applicationServices.getLoginWindowService().get());
 
   registerDatasets();
 
-  engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+  engine.load(QUrl(QStringLiteral("qrc:/loginwindow/qml/LoginWindow.qml")));
 
   return engine.rootObjects().isEmpty() ? -1 : app.exec();
 }
