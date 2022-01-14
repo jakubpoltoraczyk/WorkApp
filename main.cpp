@@ -1,4 +1,4 @@
-#include "applicationservices/applicationservices.h"
+#include "controller/controller.h"
 #include "dataset/inputcomponentdataset.h"
 
 #include <QGuiApplication>
@@ -18,10 +18,10 @@ int main(int argc, char *argv[]) {
 
   QQmlApplicationEngine engine;
 
-  ApplicationServices applicationServices;
+  Controller controller;
 
   engine.rootContext()->setContextProperty(
-      "loginWindowService", applicationServices.getLoginWindowService().get());
+      "loginWindowService", controller.getLoginWindowService().get());
 
   registerDatasets();
 

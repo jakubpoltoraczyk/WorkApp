@@ -6,11 +6,13 @@ set(CMAKE_CXX_STANDARD 17)
 
 add_executable(${PROJECT_NAME}
     
-    applicationservices/applicationservices.cpp
+    controller/controller.cpp
+    dataservice/dataservice.cpp
     loginwindow/cpp/loginwindowservice.cpp
     main.cpp
 
-    applicationservices/applicationservices.h
+    controller/controller.h
+    dataservice/dataservice.h
     dataset/inputcomponentdataset.h
     loginwindow/cpp/loginwindowservice.h
 
