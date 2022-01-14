@@ -12,9 +12,9 @@ Q_OBJECT
 public:
   /**
    * @brief Create new instance of class
-   * @param dataService Service for dataset operations
+   * @param dataServiceObject Service for dataset operations
    */
-  LoginWindowService(std::shared_ptr<DataService> dataServicee);
+  LoginWindowService(std::shared_ptr<DataService> dataServiceObject);
 
 public slots:
   /** Called, when register operation has been requested */

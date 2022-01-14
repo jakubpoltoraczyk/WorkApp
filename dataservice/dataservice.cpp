@@ -17,8 +17,20 @@ DataService::requestLogin(const std::string &login,
   }
 }
 
+const CustomDialogDataset::DataToDisplay &
+DataService::getCustomDialogData(CustomDialogDataset::Version version) {
+  updateCustomDialogData(version);
+  return customDialogData;
+}
+
 void DataService::updateLoginDataset() {
   loginDataset.insert({"Login01", "Password01"});
   loginDataset.insert({"Login02", "Password02"});
   loginDataset.insert({"Login03", "Password03"});
+}
+
+void DataService::updateCustomDialogData([
+    [maybe_unused]] CustomDialogDataset::Version version) {
+  customDialogData.title = "Some title!";
+  customDialogData.text = "Some text!";
 }

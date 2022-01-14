@@ -1,10 +1,12 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
 import InputComponentDataset 1.0
+import QtQuick.Dialogs 1.3
 
 import "../../configuration"
 import "../../inputcomponent"
 import "../../rectanglebutton"
+import "../../customdialog/qml"
 
 Window {
     id: loginWindow
@@ -74,5 +76,9 @@ Window {
             id: exitButton
             text: "Exit"
         }
+    }
+
+    CustomDialog {
+        id: customDialog
     }
 }

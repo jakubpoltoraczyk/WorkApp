@@ -21,6 +21,8 @@ int main(int argc, char *argv[]) {
   Controller controller;
 
   engine.rootContext()->setContextProperty(
+      "customDialogService", controller.getCustomDialogService().get());
+  engine.rootContext()->setContextProperty(
       "loginWindowService", controller.getLoginWindowService().get());
 
   registerDatasets();

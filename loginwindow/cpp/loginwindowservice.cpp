@@ -3,8 +3,8 @@
 #include <iostream>
 
 LoginWindowService::LoginWindowService(
-    std::shared_ptr<DataService> dataServicee)
-    : dataService(dataServicee) {}
+    std::shared_ptr<DataService> dataServiceObject)
+    : dataService(dataServiceObject) {}
 
 void LoginWindowService::onRegisterRequested() {
   // todo: implement appropriate slot for register operation request

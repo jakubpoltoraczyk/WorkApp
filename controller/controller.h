@@ -2,6 +2,7 @@
 
 #include "../loginwindow/cpp/loginwindowservice.h"
 #include "../dataservice/dataservice.h"
+#include "../customdialog/cpp/customdialog.h"
 
 #include <QObject>
 #include <memory>
@@ -18,6 +19,12 @@ public:
   Controller();
 
   /**
+   * @brief Provide service for custom dialog
+   * @return std::shared_ptr to custom dialog service 
+   */
+  std::shared_ptr<CustomDialogService> getCustomDialogService() const;
+
+  /**
    * @brief Provide service for login window
    * @return std::shared_ptr to login window service
    */
@@ -25,5 +32,6 @@ public:
 
 private:
   std::shared_ptr<DataService> dataService;
+  std::shared_ptr<CustomDialogService> customDialogService;
   std::shared_ptr<LoginWindowService> loginWindowService;
 };

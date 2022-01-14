@@ -4,6 +4,7 @@
     <file>configuration/InputComponentConstants.qml</file>
     <file>configuration/qmldir</file>
     <file>configuration/SharedConstants.qml</file>
+    <file>customdialog/qml/CustomDialog.qml</file>
     <file>inputcomponent/images/visibilityFalseEye.png</file>
     <file>inputcomponent/images/visibilityTrueEye.png</file>
     <file>inputcomponent/InputComponent.qml</file>
