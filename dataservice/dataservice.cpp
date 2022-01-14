@@ -7,6 +7,7 @@ DataService::requestLogin(const std::string &login,
                           const std::string &password) {
   try {
     if (loginDataset.at(login) == password) {
+      // todo: update user dataset according to new login dataset
       return OperationResult::Success;
     } else {
       return OperationResult::Failure;

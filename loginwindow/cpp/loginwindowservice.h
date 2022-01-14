@@ -30,6 +30,13 @@ public slots:
   /** Called, when exit operation has been requested */
   void onExitRequested();
 
+signals:
+  /** Emit, when login with specified data has been accepted */
+  void loginAccepted();
+
+  /** Emit, when login with specified data has been canceled */
+  void loginCanceled();
+
 private:
   std::shared_ptr<DataService> dataService;
 };

@@ -15,9 +15,9 @@ void LoginWindowService::onLoginRequested(const QString &loginText,
   if (dataService->requestLogin(loginText.toStdString(),
                                 passwordText.toStdString()) ==
       DataService::OperationResult::Success) {
-    std::cout << "Success login!" << std::endl;
+    emit loginAccepted();
   } else {
-    std::cout << "Failure login!" << std::endl;
+    emit loginCanceled();
   }
 }
 

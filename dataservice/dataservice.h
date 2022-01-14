@@ -12,7 +12,7 @@ public:
   enum class OperationResult {Success, Failure};
 
   /**
-   * @brief Request login operation
+   * @brief Provide appropriate operations related to login request
    * @param login User's login
    * @param password User's password
    * @return Success if login request finished successfully, otherwise Failure
