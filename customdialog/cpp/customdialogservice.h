@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../../dataset/customdialogdataset.h"
 #include "../../dataservice/dataservice.h"
+#include "../../dataset/customdialogdataset.h"
 
 #include <QObject>
 #include <QString>
@@ -17,6 +17,7 @@ public:
    * @param dataServiceObject Service for dataset operations
    */
   CustomDialogService(std::shared_ptr<DataService> dataServiceObject);
+
 public slots:
   /**
    * @brief Prepare custom dialog component to be displayed according to
@@ -26,8 +27,15 @@ public slots:
   void prepareToDisplay(CustomDialogDataset::Version version);
 
 signals:
-  /** Emit, when custom dialog component is ready to display */
-  void display(const QString & titleText, const QString & contentText);
+  /**
+   * @brief Emit, when custom dialog component is ready to display
+   * @param titleText Title text to set in custom dialog
+   * @param contentText Content text to set in custom dialog
+   * @param iconType Icon type to set in custom dialog
+   * @param buttonTypes Button types to set in custom dialog
+   */
+  void display(const QString &titleText, const QString &contentText,
+               int iconType, QVector<int> buttonTypes);
 
 private:
   std::shared_ptr<DataService> dataService;

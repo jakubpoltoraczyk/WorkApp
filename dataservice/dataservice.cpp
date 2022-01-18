@@ -3,8 +3,7 @@
 DataService::DataService() { updateLoginDataset(); }
 
 DataService::OperationResult
-DataService::requestLogin(const std::string &login,
-                          const std::string &password) {
+DataService::requestLogin(const QString &login, const QString &password) {
   try {
     if (loginDataset.at(login) == password) {
       // todo: update user dataset according to new login dataset
@@ -31,6 +30,8 @@ void DataService::updateLoginDataset() {
 
 void DataService::updateCustomDialogData([
     [maybe_unused]] CustomDialogDataset::Version version) {
-  customDialogData.title = "Some title!";
-  customDialogData.text = "Some text!";
+  customDialogData.title = "Example title!";
+  customDialogData.text = "Example text!";
+  customDialogData.iconType = QMessageBox::Icon::Critical;
+  customDialogData.buttonTypes.append(QMessageBox::StandardButton::Ok);
 }

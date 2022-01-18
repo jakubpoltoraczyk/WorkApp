@@ -2,7 +2,7 @@
 
 #include "../loginwindow/cpp/loginwindowservice.h"
 #include "../dataservice/dataservice.h"
-#include "../customdialog/cpp/customdialog.h"
+#include "../customdialog/cpp/customdialogservice.h"
 
 #include <QObject>
 #include <memory>

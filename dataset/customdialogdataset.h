@@ -1,8 +1,8 @@
 #pragma once
 
+#include <QMessageBox>
 #include <QObject>
-
-#include <string>
+#include <QVector>
 
 /** Contains custom dialog dataset */
 namespace CustomDialogDataset {
@@ -14,8 +14,11 @@ enum class Version { Register };
 
 /** Contains data to display in custom dialog component */
 struct DataToDisplay {
-  std::string title;
-  std::string text;
+  QString title; ///< Title text to display in custom dialog component
+  QString text;  ///< Content text to display in custom dialog component
+  QMessageBox::Icon iconType; ///< Icon to display in custom dialog component
+  QVector<QMessageBox::StandardButton>
+      buttonTypes; ///< Button types to display in custom dialog component
 };
 
 } // namespace CustomDialogDataset

@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/">
     <file>configuration/ColorConstants.qml</file>
+    <file>configuration/CustomDialogConstants.qml</file>
     <file>configuration/InputComponentConstants.qml</file>
     <file>configuration/qmldir</file>
     <file>configuration/SharedConstants.qml</file>

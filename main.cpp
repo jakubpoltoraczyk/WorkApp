@@ -1,4 +1,5 @@
 #include "controller/controller.h"
+#include "dataset/customdialogdataset.h"
 #include "dataset/inputcomponentdataset.h"
 
 #include <QGuiApplication>
@@ -10,6 +11,9 @@ void registerDatasets() {
   qmlRegisterUncreatableMetaObject(
       InputComponentDataset::staticMetaObject, "InputComponentDataset", 1, 0,
       "InputComponentDataset", "Couldn't create: object is uncreatable");
+  qmlRegisterUncreatableMetaObject(
+      CustomDialogDataset::staticMetaObject, "CustomDialogDataset", 1, 0,
+      "CustomDialogDataset", "Couldn't create: object is uncreatable");
 }
 } // namespace
 

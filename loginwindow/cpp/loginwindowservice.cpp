@@ -12,8 +12,7 @@ void LoginWindowService::onRegisterRequested() {
 
 void LoginWindowService::onLoginRequested(const QString &loginText,
                                           const QString &passwordText) {
-  if (dataService->requestLogin(loginText.toStdString(),
-                                passwordText.toStdString()) ==
+  if (dataService->requestLogin(loginText, passwordText) ==
       DataService::OperationResult::Success) {
     emit loginAccepted();
   } else {

@@ -2,6 +2,8 @@
 
 #include "../dataset/customdialogdataset.h"
 
+#include <QString>
+
 #include <map>
 
 /** Class, which represents service for dataset operations */
@@ -19,8 +21,8 @@ public:
    * @param password User's password
    * @return Success if login request finished successfully, otherwise Failure
    */
-  OperationResult requestLogin(const std::string &login,
-                               const std::string &password);
+  OperationResult requestLogin(const QString &login,
+                               const QString &password);
 
   /**
    * @brief Provide custom dialog data to display
@@ -34,7 +36,7 @@ private:
   void updateLoginDataset();
   void updateCustomDialogData(CustomDialogDataset::Version version);
 
-  std::map<std::string, std::string>
+  std::map<QString, QString>
       loginDataset; ///< Map with login as a key and password as a value
 
   CustomDialogDataset::DataToDisplay customDialogData;
