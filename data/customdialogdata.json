@@ -1,0 +1,8 @@
+{
+    "login_error" : {
+        "title" : "Login error",
+        "text" : "You've entered incorrect login or password",
+        "icon" : 3,
+        "buttons" : [2048, 4096]
+    }
+}

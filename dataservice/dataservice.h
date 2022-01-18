@@ -5,6 +5,7 @@
 #include <QString>
 
 #include <map>
+#include <filesystem>
 
 /** Class, which represents service for dataset operations */
 class DataService {
@@ -21,8 +22,7 @@ public:
    * @param password User's password
    * @return Success if login request finished successfully, otherwise Failure
    */
-  OperationResult requestLogin(const QString &login,
-                               const QString &password);
+  OperationResult requestLogin(const QString &login, const QString &password);
 
   /**
    * @brief Provide custom dialog data to display
@@ -33,11 +33,10 @@ public:
   getCustomDialogData(CustomDialogDataset::Version version);
 
 private:
-  void updateLoginDataset();
+  void deserializeLoginData();
   void updateCustomDialogData(CustomDialogDataset::Version version);
 
-  std::map<QString, QString>
-      loginDataset; ///< Map with login as a key and password as a value
-
+  std::filesystem::path dataDirectory;
+  std::map<QString, QString> loginData;
   CustomDialogDataset::DataToDisplay customDialogData;
 };

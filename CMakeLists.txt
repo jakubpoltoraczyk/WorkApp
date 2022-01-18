@@ -1,6 +1,7 @@
 project(WorkApp)
 
 find_package(Qt5 5.11.3 COMPONENTS Quick Widgets REQUIRED)
+find_package(nlohmann_json REQUIRED)
 
 set(CMAKE_CXX_STANDARD 17)
 
@@ -29,4 +30,5 @@ set_target_properties(${PROJECT_NAME} PROPERTIES AUTOMOC ON AUTORCC ON)
 target_link_libraries(${PROJECT_NAME}
     Qt5::Quick
     Qt5::Widgets
+    nlohmann_json::nlohmann_json
 )
