@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../loginwindow/cpp/loginwindowservice.h"
+#include "../loginwindowservice/loginwindowservice.h"
 #include "../dataservice/dataservice.h"
-#include "../customdialog/cpp/customdialogservice.h"
+#include "../customdialogservice/customdialogservice.h"
 
 #include <QObject>
 #include <memory>

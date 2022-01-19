@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../../dataservice/dataservice.h"
-#include "../../dataset/customdialogdataset.h"
+#include "../dataservice/dataservice.h"
+#include "../dataset/customdialogdataset.h"
 
 #include <QObject>
 #include <QString>

@@ -3,10 +3,10 @@ import QtQuick.Window 2.12
 import InputComponentDataset 1.0
 import QtQuick.Dialogs 1.3
 
-import "../../configuration"
-import "../../inputcomponent"
-import "../../rectanglebutton"
-import "../../customdialog/qml"
+import "../configuration"
+import "../inputcomponent"
+import "../rectanglebutton"
+import "../customdialog"
 
 Window {
     id: loginWindow

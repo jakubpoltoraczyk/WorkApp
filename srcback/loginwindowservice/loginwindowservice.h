@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../dataservice/dataservice.h"
+#include "../dataservice/dataservice.h"
 
 #include <QObject>
 

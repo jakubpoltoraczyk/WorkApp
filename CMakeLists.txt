@@ -7,18 +7,18 @@ set(CMAKE_CXX_STANDARD 17)
 
 add_executable(${PROJECT_NAME}
     
-    controller/controller.cpp
-    customdialog/cpp/customdialogservice.cpp
-    dataservice/dataservice.cpp
-    loginwindow/cpp/loginwindowservice.cpp
+    srcback/controller/controller.cpp
+    srcback/customdialogservice/customdialogservice.cpp
+    srcback/dataservice/dataservice.cpp
+    srcback/loginwindowservice/loginwindowservice.cpp
     main.cpp
 
-    controller/controller.h
-    customdialog/cpp/customdialogservice.h
-    dataservice/dataservice.h
-    dataset/inputcomponentdataset.h
-    dataset/customdialogdataset.h
-    loginwindow/cpp/loginwindowservice.h
+    srcback/controller/controller.h
+    srcback/customdialogservice/customdialogservice.h
+    srcback/dataservice/dataservice.h
+    srcback/dataset/inputcomponentdataset.h
+    srcback/dataset/customdialogdataset.h
+    srcback/loginwindowservice/loginwindowservice.h
 
     qml.qrc
 )

@@ -1,6 +1,6 @@
-#include "controller/controller.h"
-#include "dataset/customdialogdataset.h"
-#include "dataset/inputcomponentdataset.h"
+#include "srcback/controller/controller.h"
+#include "srcback/dataset/customdialogdataset.h"
+#include "srcback/dataset/inputcomponentdataset.h"
 
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
@@ -31,7 +31,7 @@ int main(int argc, char *argv[]) {
 
   registerDatasets();
 
-  engine.load(QUrl(QStringLiteral("qrc:/loginwindow/qml/LoginWindow.qml")));
+  engine.load(QUrl(QStringLiteral("qrc:/srcgui/loginwindow/LoginWindow.qml")));
 
   return engine.rootObjects().isEmpty() ? -1 : app.exec();
 }

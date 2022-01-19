@@ -1,17 +1,17 @@
 <RCC>
     <qresource prefix="/">
-    <file>configuration/ColorConstants.qml</file>
-    <file>configuration/CustomDialogConstants.qml</file>
-    <file>configuration/InputComponentConstants.qml</file>
-    <file>configuration/qmldir</file>
-    <file>configuration/SharedConstants.qml</file>
-    <file>customdialog/qml/CustomDialog.qml</file>
-    <file>inputcomponent/images/visibilityFalseEye.png</file>
-    <file>inputcomponent/images/visibilityTrueEye.png</file>
-    <file>inputcomponent/InputComponent.qml</file>
-    <file>loginwindow/qml/LoginWindow.qml</file>
+    <file>srcgui/configuration/ColorConstants.qml</file>
+    <file>srcgui/configuration/CustomDialogConstants.qml</file>
+    <file>srcgui/configuration/InputComponentConstants.qml</file>
+    <file>srcgui/configuration/qmldir</file>
+    <file>srcgui/configuration/SharedConstants.qml</file>
+    <file>srcgui/customdialog/CustomDialog.qml</file>
+    <file>srcgui/inputcomponent/images/visibilityFalseEye.png</file>
+    <file>srcgui/inputcomponent/images/visibilityTrueEye.png</file>
+    <file>srcgui/inputcomponent/InputComponent.qml</file>
+    <file>srcgui/loginwindow/LoginWindow.qml</file>
     <file>main.qml</file>
-    <file>rectanglebutton/RectangleButton.qml</file>
-    <file>rectanglesolidborder/RectangleSolidBorder.qml</file>
+    <file>srcgui/rectanglebutton/RectangleButton.qml</file>
+    <file>srcgui/rectanglesolidborder/RectangleSolidBorder.qml</file>
     </qresource>
 </RCC>
