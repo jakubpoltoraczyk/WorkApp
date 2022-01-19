@@ -28,8 +28,8 @@ DataService::DataService() : dataDirectory(getDataDirectory()) {
   updateLoginData();
 }
 
-DataService::OperationResult
-DataService::requestLogin(const QString &login, const QString &password) {
+DataService::OperationResult DataService::requestLogin(const QString &login,
+                                                       const QString &password) {
   try {
     if (loginData.at(login) == password) {
       // todo: update user dataset according to new login dataset
@@ -48,15 +48,13 @@ DataService::getCustomDialogData(CustomDialogDataset::Version version) {
   return customDialogData;
 }
 
-std::ifstream
-DataService::getJsonFileToRead(const std::string &fileName) const {
+std::ifstream DataService::getJsonFileToRead(const std::string &fileName) const {
   auto jsonFile = dataDirectory;
   jsonFile.append(fileName);
   return jsonFile;
 }
 
-std::ofstream
-DataService::getJsonFileToSave(const std::string &fileName) const {
+std::ofstream DataService::getJsonFileToSave(const std::string &fileName) const {
   auto jsonFile = dataDirectory;
   jsonFile.append(fileName);
   return jsonFile;
@@ -68,8 +66,8 @@ nlohmann::json DataService::getJsonObject(const std::string &fileName) const {
 
 void DataService::updateLoginData() {
   for (const auto &singleData : jsonObjects.loginDataJson.items()) {
-    loginData.insert({QString::fromStdString(singleData.key()),
-                      QString::fromStdString(singleData.value())});
+    loginData.insert(
+        {QString::fromStdString(singleData.key()), QString::fromStdString(singleData.value())});
   }
 }
 
@@ -89,15 +87,12 @@ void DataService::updateCustomDialogData(CustomDialogDataset::Version version) {
 void DataService::deserializeCustomDialogData(const std::string &keyValue) {
   customDialogData.title =
       QString::fromStdString(jsonObjects.customDialogDataJson[keyValue][TITLE]);
-  customDialogData.text =
-      QString::fromStdString(jsonObjects.customDialogDataJson[keyValue][TEXT]);
-  customDialogData.iconType = static_cast<QMessageBox::Icon>(
-      jsonObjects.customDialogDataJson[keyValue][ICON]);
+  customDialogData.text = QString::fromStdString(jsonObjects.customDialogDataJson[keyValue][TEXT]);
+  customDialogData.iconType =
+      static_cast<QMessageBox::Icon>(jsonObjects.customDialogDataJson[keyValue][ICON]);
 
   customDialogData.buttonTypes.clear();
-  for (const auto &button :
-       jsonObjects.customDialogDataJson[keyValue][BUTTONS]) {
-    customDialogData.buttonTypes.append(
-        static_cast<QMessageBox::StandardButton>(button));
+  for (const auto &button : jsonObjects.customDialogDataJson[keyValue][BUTTONS]) {
+    customDialogData.buttonTypes.append(static_cast<QMessageBox::StandardButton>(button));
   }
 }

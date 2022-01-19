@@ -7,8 +7,8 @@
 #include <memory>
 
 /** Class, which provides service functionalities of login window */
-class LoginWindowService: public QObject {
-Q_OBJECT
+class LoginWindowService : public QObject {
+  Q_OBJECT
 public:
   /**
    * @brief Create new instance of class
@@ -25,7 +25,7 @@ public slots:
    * @param loginText Login text field content
    * @param passwordText Password text field content
    */
-  void onLoginRequested(const QString & loginText, const QString & passwordText);
+  void onLoginRequested(const QString &loginText, const QString &passwordText);
 
   /** Called, when exit operation has been requested */
   void onExitRequested();

@@ -75,14 +75,11 @@ private:
 
   /** Contains JSON objects, which can be used several times during app life */
   struct JsonObjects {
-    nlohmann::json loginDataJson; ///< JSON object related to login data
-    nlohmann::json
-        customDialogDataJson; ///< JSON object related to custom dialog data
+    nlohmann::json loginDataJson;        ///< JSON object related to login data
+    nlohmann::json customDialogDataJson; ///< JSON object related to custom dialog data
   } jsonObjects;
 
-  std::filesystem::path dataDirectory; ///< Contains data directory path
-  std::map<QString, QString>
-      loginData; ///< Contains login data (login and password)
-  CustomDialogDataset::DataToDisplay
-      customDialogData; ///< Contains custom dialog data
+  std::filesystem::path dataDirectory;                 ///< Contains data directory path
+  std::map<QString, QString> loginData;                ///< Contains login data (login and password)
+  CustomDialogDataset::DataToDisplay customDialogData; ///< Contains custom dialog data
 };

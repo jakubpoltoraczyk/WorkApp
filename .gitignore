@@ -1,3 +1,4 @@
 .vscode
 build
 .token.txt
+.clang-format

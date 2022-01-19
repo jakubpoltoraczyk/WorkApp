@@ -34,8 +34,8 @@ signals:
    * @param iconType Icon type to set in custom dialog
    * @param buttonTypes Button types to set in custom dialog
    */
-  void display(const QString &titleText, const QString &contentText,
-               int iconType, QVector<int> buttonTypes);
+  void display(const QString &titleText, const QString &contentText, int iconType,
+               QVector<int> buttonTypes);
 
 private:
   std::shared_ptr<DataService> dataService;

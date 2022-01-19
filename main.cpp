@@ -8,12 +8,12 @@
 
 namespace {
 void registerDatasets() {
-  qmlRegisterUncreatableMetaObject(
-      InputComponentDataset::staticMetaObject, "InputComponentDataset", 1, 0,
-      "InputComponentDataset", "Couldn't create: object is uncreatable");
-  qmlRegisterUncreatableMetaObject(
-      CustomDialogDataset::staticMetaObject, "CustomDialogDataset", 1, 0,
-      "CustomDialogDataset", "Couldn't create: object is uncreatable");
+  qmlRegisterUncreatableMetaObject(InputComponentDataset::staticMetaObject, "InputComponentDataset",
+                                   1, 0, "InputComponentDataset",
+                                   "Couldn't create: object is uncreatable");
+  qmlRegisterUncreatableMetaObject(CustomDialogDataset::staticMetaObject, "CustomDialogDataset", 1,
+                                   0, "CustomDialogDataset",
+                                   "Couldn't create: object is uncreatable");
 }
 } // namespace
 
@@ -24,10 +24,10 @@ int main(int argc, char *argv[]) {
 
   Controller controller;
 
-  engine.rootContext()->setContextProperty(
-      "customDialogService", controller.getCustomDialogService().get());
-  engine.rootContext()->setContextProperty(
-      "loginWindowService", controller.getLoginWindowService().get());
+  engine.rootContext()->setContextProperty("customDialogService",
+                                           controller.getCustomDialogService().get());
+  engine.rootContext()->setContextProperty("loginWindowService",
+                                           controller.getLoginWindowService().get());
 
   registerDatasets();
 

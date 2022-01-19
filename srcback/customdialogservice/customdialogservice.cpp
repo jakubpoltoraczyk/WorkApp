@@ -2,12 +2,10 @@
 
 #include <algorithm>
 
-CustomDialogService::CustomDialogService(
-    std::shared_ptr<DataService> dataServiceObject)
+CustomDialogService::CustomDialogService(std::shared_ptr<DataService> dataServiceObject)
     : dataService(dataServiceObject) {}
 
-void CustomDialogService::prepareToDisplay(
-    CustomDialogDataset::Version version) {
+void CustomDialogService::prepareToDisplay(CustomDialogDataset::Version version) {
   auto customDialogData = dataService->getCustomDialogData(version);
   const auto &originalButtonTypes = customDialogData.buttonTypes;
 
@@ -16,6 +14,6 @@ void CustomDialogService::prepareToDisplay(
   std::copy(originalButtonTypes.begin(), originalButtonTypes.end(),
             std::back_inserter(buttonTypes));
 
-  emit display(customDialogData.title, customDialogData.text,
-               customDialogData.iconType, std::move(buttonTypes));
+  emit display(customDialogData.title, customDialogData.text, customDialogData.iconType,
+               std::move(buttonTypes));
 }

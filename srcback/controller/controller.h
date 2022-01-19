@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../loginwindowservice/loginwindowservice.h"
-#include "../dataservice/dataservice.h"
 #include "../customdialogservice/customdialogservice.h"
+#include "../dataservice/dataservice.h"
+#include "../loginwindowservice/loginwindowservice.h"
 
 #include <QObject>
 #include <memory>
@@ -20,7 +20,7 @@ public:
 
   /**
    * @brief Provide service for custom dialog
-   * @return std::shared_ptr to custom dialog service 
+   * @return std::shared_ptr to custom dialog service
    */
   std::shared_ptr<CustomDialogService> getCustomDialogService() const;
 
