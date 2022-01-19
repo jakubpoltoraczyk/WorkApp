@@ -1,8 +1,5 @@
 #include "dataservice.h"
 
-#include <fstream>
-#include <nlohmann/json.hpp>
-
 #include <iostream>
 
 namespace {
@@ -25,6 +22,9 @@ std::filesystem::path getDataDirectory() {
 } // namespace
 
 DataService::DataService() : dataDirectory(getDataDirectory()) {
+  jsonObjects.loginDataJson = getJsonObject(LOGIN_DATA_FILE);
+  jsonObjects.customDialogDataJson = getJsonObject(CUSTOM_DIALOG_FILE);
+
   updateLoginData();
 }
 
@@ -48,29 +48,33 @@ DataService::getCustomDialogData(CustomDialogDataset::Version version) {
   return customDialogData;
 }
 
-void DataService::updateLoginData() {
-  auto loginDataFilePath = dataDirectory;
-  loginDataFilePath.append(LOGIN_DATA_FILE);
-  std::ifstream loginDataFile(loginDataFilePath);
+std::ifstream
+DataService::getJsonFileToRead(const std::string &fileName) const {
+  auto jsonFile = dataDirectory;
+  jsonFile.append(fileName);
+  return jsonFile;
+}
 
-  nlohmann::json loginDataJson = nlohmann::json::parse(loginDataFile);
-  for (const auto &singleData : loginDataJson.items()) {
+std::ofstream
+DataService::getJsonFileToSave(const std::string &fileName) const {
+  auto jsonFile = dataDirectory;
+  jsonFile.append(fileName);
+  return jsonFile;
+}
+
+nlohmann::json DataService::getJsonObject(const std::string &fileName) const {
+  return nlohmann::json::parse(getJsonFileToRead(fileName));
+}
+
+void DataService::updateLoginData() {
+  for (const auto &singleData : jsonObjects.loginDataJson.items()) {
     loginData.insert({QString::fromStdString(singleData.key()),
                       QString::fromStdString(singleData.value())});
   }
-
-  loginDataFile.close();
 }
 
 void DataService::updateCustomDialogData(CustomDialogDataset::Version version) {
-  auto customDialogDataFilePath = dataDirectory;
-  customDialogDataFilePath.append(CUSTOM_DIALOG_FILE);
-  std::ifstream customDialogDataFile(customDialogDataFilePath);
-
-  nlohmann::json customDialogDataJson =
-      nlohmann::json::parse(customDialogDataFile);
-
-  switch (std::string keyValue; version) {
+  switch (version) {
   case CustomDialogDataset::Version::LoginError:
     deserializeCustomDialogData(LOGIN_ERROR);
     break;
@@ -83,25 +87,17 @@ void DataService::updateCustomDialogData(CustomDialogDataset::Version version) {
 }
 
 void DataService::deserializeCustomDialogData(const std::string &keyValue) {
-  auto customDialogDataFilePath = dataDirectory;
-  customDialogDataFilePath.append(CUSTOM_DIALOG_FILE);
-  std::ifstream customDialogDataFile(customDialogDataFilePath);
-
-  nlohmann::json customDialogDataJson =
-      nlohmann::json::parse(customDialogDataFile);
-
   customDialogData.title =
-      QString::fromStdString(customDialogDataJson[keyValue][TITLE]);
+      QString::fromStdString(jsonObjects.customDialogDataJson[keyValue][TITLE]);
   customDialogData.text =
-      QString::fromStdString(customDialogDataJson[keyValue][TEXT]);
-  customDialogData.iconType =
-      static_cast<QMessageBox::Icon>(customDialogDataJson[keyValue][ICON]);
+      QString::fromStdString(jsonObjects.customDialogDataJson[keyValue][TEXT]);
+  customDialogData.iconType = static_cast<QMessageBox::Icon>(
+      jsonObjects.customDialogDataJson[keyValue][ICON]);
 
   customDialogData.buttonTypes.clear();
-  for (const auto &button : customDialogDataJson[keyValue][BUTTONS]) {
+  for (const auto &button :
+       jsonObjects.customDialogDataJson[keyValue][BUTTONS]) {
     customDialogData.buttonTypes.append(
         static_cast<QMessageBox::StandardButton>(button));
   }
-
-  customDialogDataFile.close();
 }

@@ -5,7 +5,9 @@
 #include <QString>
 
 #include <filesystem>
+#include <fstream>
 #include <map>
+#include <nlohmann/json.hpp>
 
 /** Class, which represents service for dataset operations */
 class DataService {
@@ -33,6 +35,27 @@ public:
   getCustomDialogData(CustomDialogDataset::Version version);
 
 private:
+  /**
+   * @brief Provide JSON file in read mode
+   * @param fileName Name of the JSON file
+   * @return JSON file in read mode
+   */
+  std::ifstream getJsonFileToRead(const std::string &fileName) const;
+
+  /**
+   * @brief Provide JSON file in write mode
+   * @param fileName Name of the JSON file
+   * @return JSON file in write mode
+   */
+  std::ofstream getJsonFileToSave(const std::string &fileName) const;
+
+  /**
+   * @brief Provide JSON object according to specified file name
+   * @param fileName Name of the JSON file
+   * @return JSON object
+   */
+  nlohmann::json getJsonObject(const std::string &fileName) const;
+
   /** Update login data */
   void updateLoginData();
 
@@ -46,11 +69,20 @@ private:
 
   /**
    * @brief Deserialize custom dialog data
-   * @param keyValue Key value used to get appropriate data from JSON file
+   * @param keyValue Key value used to get appropriate data from JSON object
    */
-  void deserializeCustomDialogData(const std::string & keyValue);
+  void deserializeCustomDialogData(const std::string &keyValue);
 
-  std::filesystem::path dataDirectory;
-  std::map<QString, QString> loginData;
-  CustomDialogDataset::DataToDisplay customDialogData;
+  /** Contains JSON objects, which can be used several times during app life */
+  struct JsonObjects {
+    nlohmann::json loginDataJson; ///< JSON object related to login data
+    nlohmann::json
+        customDialogDataJson; ///< JSON object related to custom dialog data
+  } jsonObjects;
+
+  std::filesystem::path dataDirectory; ///< Contains data directory path
+  std::map<QString, QString>
+      loginData; ///< Contains login data (login and password)
+  CustomDialogDataset::DataToDisplay
+      customDialogData; ///< Contains custom dialog data
 };
