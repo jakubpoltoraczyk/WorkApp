@@ -10,6 +10,13 @@ constexpr char DATA_DIRECTORY[] = "data";
 constexpr char LOGIN_DATA_FILE[] = "logindata.json";
 constexpr char CUSTOM_DIALOG_FILE[] = "customdialogdata.json";
 
+constexpr char EXAMPLE[] = "example";
+constexpr char LOGIN_ERROR[] = "login_error";
+constexpr char TITLE[] = "title";
+constexpr char TEXT[] = "text";
+constexpr char ICON[] = "icon";
+constexpr char BUTTONS[] = "buttons";
+
 std::filesystem::path getDataDirectory() {
   auto mainDirectory = std::filesystem::current_path().parent_path();
   mainDirectory.append(DATA_DIRECTORY);
@@ -18,7 +25,7 @@ std::filesystem::path getDataDirectory() {
 } // namespace
 
 DataService::DataService() : dataDirectory(getDataDirectory()) {
-  deserializeLoginData();
+  updateLoginData();
 }
 
 DataService::OperationResult
@@ -41,11 +48,11 @@ DataService::getCustomDialogData(CustomDialogDataset::Version version) {
   return customDialogData;
 }
 
-void DataService::deserializeLoginData() {
+void DataService::updateLoginData() {
   auto loginDataFilePath = dataDirectory;
   loginDataFilePath.append(LOGIN_DATA_FILE);
   std::ifstream loginDataFile(loginDataFilePath);
-  
+
   nlohmann::json loginDataJson = nlohmann::json::parse(loginDataFile);
   for (const auto &singleData : loginDataJson.items()) {
     loginData.insert({QString::fromStdString(singleData.key()),
@@ -55,8 +62,7 @@ void DataService::deserializeLoginData() {
   loginDataFile.close();
 }
 
-void DataService::updateCustomDialogData([
-    [maybe_unused]] CustomDialogDataset::Version version) {
+void DataService::updateCustomDialogData(CustomDialogDataset::Version version) {
   auto customDialogDataFilePath = dataDirectory;
   customDialogDataFilePath.append(CUSTOM_DIALOG_FILE);
   std::ifstream customDialogDataFile(customDialogDataFilePath);
@@ -64,5 +70,38 @@ void DataService::updateCustomDialogData([
   nlohmann::json customDialogDataJson =
       nlohmann::json::parse(customDialogDataFile);
 
-  std::cout << customDialogDataJson["login_error"]["text"] << std::endl;
+  switch (std::string keyValue; version) {
+  case CustomDialogDataset::Version::LoginError:
+    deserializeCustomDialogData(LOGIN_ERROR);
+    break;
+  case CustomDialogDataset::Version::Example:
+    deserializeCustomDialogData(EXAMPLE);
+    break;
+  default:
+    std::cout << "Unknown type of custom dialog! It will not be displayed";
+  }
+}
+
+void DataService::deserializeCustomDialogData(const std::string &keyValue) {
+  auto customDialogDataFilePath = dataDirectory;
+  customDialogDataFilePath.append(CUSTOM_DIALOG_FILE);
+  std::ifstream customDialogDataFile(customDialogDataFilePath);
+
+  nlohmann::json customDialogDataJson =
+      nlohmann::json::parse(customDialogDataFile);
+
+  customDialogData.title =
+      QString::fromStdString(customDialogDataJson[keyValue][TITLE]);
+  customDialogData.text =
+      QString::fromStdString(customDialogDataJson[keyValue][TEXT]);
+  customDialogData.iconType =
+      static_cast<QMessageBox::Icon>(customDialogDataJson[keyValue][ICON]);
+
+  customDialogData.buttonTypes.clear();
+  for (const auto &button : customDialogDataJson[keyValue][BUTTONS]) {
+    customDialogData.buttonTypes.append(
+        static_cast<QMessageBox::StandardButton>(button));
+  }
+
+  customDialogDataFile.close();
 }

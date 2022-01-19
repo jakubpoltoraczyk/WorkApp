@@ -12,7 +12,7 @@ Controller::Controller()
   QObject::connect(loginWindowService.get(), &LoginWindowService::loginCanceled,
                    [this]() {
                      customDialogService->prepareToDisplay(
-                         CustomDialogDataset::Version::Register);
+                         CustomDialogDataset::Version::LoginError);
                    });
 }
 

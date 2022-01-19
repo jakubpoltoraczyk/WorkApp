@@ -4,8 +4,8 @@
 
 #include <QString>
 
-#include <map>
 #include <filesystem>
+#include <map>
 
 /** Class, which represents service for dataset operations */
 class DataService {
@@ -33,8 +33,22 @@ public:
   getCustomDialogData(CustomDialogDataset::Version version);
 
 private:
-  void deserializeLoginData();
+  /** Update login data */
+  void updateLoginData();
+
+  /**
+   * @brief Update custom dialog data
+   * @details It uses @see deserializeCustomDialogData method to deserialize
+   * appropriate data
+   * @param version Version, in which one custom dialog data will be updated
+   */
   void updateCustomDialogData(CustomDialogDataset::Version version);
+
+  /**
+   * @brief Deserialize custom dialog data
+   * @param keyValue Key value used to get appropriate data from JSON file
+   */
+  void deserializeCustomDialogData(const std::string & keyValue);
 
   std::filesystem::path dataDirectory;
   std::map<QString, QString> loginData;

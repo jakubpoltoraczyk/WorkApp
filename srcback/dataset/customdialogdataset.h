@@ -10,7 +10,7 @@ Q_NAMESPACE
 Q_CLASSINFO("RegisterEnumClassesUnscoped", "false")
 
 /** Enumeration related to available custom dialog version */
-enum class Version { Register };
+enum class Version { LoginError, Example };
 
 /** Contains data to display in custom dialog component */
 struct DataToDisplay {

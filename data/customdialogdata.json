@@ -3,6 +3,12 @@
         "title" : "Login error",
         "text" : "You've entered incorrect login or password",
         "icon" : 3,
-        "buttons" : [2048, 4096]
+        "buttons" : [1024]
+    },
+    "example" : {
+        "title" : "Example title",
+        "text" : "Example text", 
+        "icon" : 1,
+        "buttons" : [65536, 8388608, 16777216]
     }
 }
