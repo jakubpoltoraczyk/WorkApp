@@ -13,7 +13,4 @@ QtObject {
 
     /** Default font family */
     readonly property string defaultFontFamily: "FreeSans" 
-
-    /** Default window color */
-    readonly property color defaultWindowColor: ColorConstants.extraLightGrey
 }

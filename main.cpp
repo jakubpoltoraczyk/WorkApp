@@ -30,6 +30,8 @@ int main(int argc, char *argv[]) {
                                            controller.getCustomDialogService().get());
   engine.rootContext()->setContextProperty("loginWindowService",
                                            controller.getLoginWindowService().get());
+  engine.rootContext()->setContextProperty("registerWindowService",
+                                           controller.getRegisterWindowService().get());
 
   registerDatasets();
 

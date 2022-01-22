@@ -8,7 +8,11 @@ Controller::Controller()
     : dataService(std::make_shared<DataService>()),
       windowManager(std::make_shared<WindowManager>()),
       customDialogService(std::make_shared<CustomDialogService>(dataService)),
-      loginWindowService(std::make_shared<LoginWindowService>(dataService)) {
+      loginWindowService(std::make_shared<LoginWindowService>(dataService)),
+      registerWindowService(std::make_shared<RegisterWindowService>(dataService)) {
+  QObject::connect(
+      loginWindowService.get(), &LoginWindowService::registerWindowRequested,
+      [this]() { windowManager->createWindow(WindowManagerDataset::WindowType::RegisterWindow); });
   QObject::connect(loginWindowService.get(), &LoginWindowService::loginAccepted,
                    [this]() { windowManager->hideSplashScreen(); });
   QObject::connect(loginWindowService.get(), &LoginWindowService::loginCanceled, [this]() {
@@ -29,4 +33,8 @@ std::shared_ptr<CustomDialogService> Controller::getCustomDialogService() const 
 
 std::shared_ptr<LoginWindowService> Controller::getLoginWindowService() const {
   return loginWindowService;
+}
+
+std::shared_ptr<RegisterWindowService> Controller::getRegisterWindowService() const {
+  return registerWindowService;
 }

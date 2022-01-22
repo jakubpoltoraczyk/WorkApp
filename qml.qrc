@@ -4,6 +4,7 @@
     <file>srcgui/configuration/InputComponentConstants.qml</file>
     <file>srcgui/configuration/qmldir</file>
     <file>srcgui/configuration/SharedConstants.qml</file>
+    <file>srcgui/configuration/WindowConstants.qml</file>
     <file>srcgui/configuration/WindowManagerConstants.qml</file>
     <file>srcgui/customdialog/CustomDialog.qml</file>
     <file>srcgui/images/inputcomponent/visibilityFalseEye.png</file>
@@ -11,8 +12,9 @@
     <file>srcgui/images/qtlogo.png</file>
     <file>srcgui/inputcomponent/InputComponent.qml</file>
     <file>srcgui/loginwindow/LoginWindow.qml</file>
-    <file>main.qml</file>
     <file>srcgui/rectanglebutton/RectangleButton.qml</file>
     <file>srcgui/rectanglesolidborder/RectangleSolidBorder.qml</file>
+    <file>srcgui/registerwindow/RegisterWindow.qml</file>
+    <file>main.qml</file>
     </qresource>
 </RCC>

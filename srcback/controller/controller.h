@@ -3,6 +3,7 @@
 #include "../customdialogservice/customdialogservice.h"
 #include "../dataservice/dataservice.h"
 #include "../loginwindowservice/loginwindowservice.h"
+#include "../registerwindowservice/registerwindowservice.h"
 #include "../windowmanager/windowmanager.h"
 
 #include <QObject>
@@ -40,9 +41,16 @@ public:
    */
   std::shared_ptr<LoginWindowService> getLoginWindowService() const;
 
+  /**
+   * @brief Provide service for register window
+   * @return std::shared_ptr to register window service
+   */
+  std::shared_ptr<RegisterWindowService> getRegisterWindowService() const;
+
 private:
   std::shared_ptr<DataService> dataService;
   std::shared_ptr<WindowManager> windowManager;
   std::shared_ptr<CustomDialogService> customDialogService;
   std::shared_ptr<LoginWindowService> loginWindowService;
+  std::shared_ptr<RegisterWindowService> registerWindowService;
 };

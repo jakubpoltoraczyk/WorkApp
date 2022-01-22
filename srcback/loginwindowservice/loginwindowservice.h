@@ -17,20 +17,23 @@ public:
   LoginWindowService(std::shared_ptr<DataService> dataServiceObject);
 
 public slots:
-  /** Called, when register operation has been requested */
-  void onRegisterRequested();
+  /** Called, when register button has been released*/
+  void onRegisterButtonReleased();
 
   /**
-   * @brief Called, when login operation has been requested
+   * @brief Called, when login button has been released
    * @param loginText Login text field content
    * @param passwordText Password text field content
    */
-  void onLoginRequested(const QString &loginText, const QString &passwordText);
+  void onLoginButtonReleased(const QString &loginText, const QString &passwordText);
 
-  /** Called, when exit operation has been requested */
-  void onExitRequested();
+  /** Called, when exit button has been released */
+  void onExitButtonReleased();
 
 signals:
+  /** Emit, when displaying register window has been requested */
+  void registerWindowRequested();
+
   /** Emit, when login with specified data has been accepted */
   void loginAccepted();
 

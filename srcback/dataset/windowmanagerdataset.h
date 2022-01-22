@@ -8,6 +8,6 @@ Q_NAMESPACE
 Q_CLASSINFO("RegisterEnumClassesUnscoped", "false")
 
 /** Contains available types of window */
-enum class WindowType { LoginWindow };
+enum class WindowType { LoginWindow, RegisterWindow };
 Q_ENUM_NS(WindowType)
 } // namespace WindowManagerDataset

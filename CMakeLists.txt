@@ -11,6 +11,7 @@ add_executable(${PROJECT_NAME}
     srcback/customdialogservice/customdialogservice.cpp
     srcback/dataservice/dataservice.cpp
     srcback/loginwindowservice/loginwindowservice.cpp
+    srcback/registerwindowservice/registerwindowservice.cpp
     srcback/windowmanager/windowmanager.cpp
     main.cpp
 
@@ -21,6 +22,7 @@ add_executable(${PROJECT_NAME}
     srcback/dataset/customdialogdataset.h
     srcback/dataset/windowmanagerdataset.h
     srcback/loginwindowservice/loginwindowservice.h
+    srcback/registerwindowservice/registerwindowservice.h
     srcback/windowmanager/windowmanager.h
 
     qml.qrc
