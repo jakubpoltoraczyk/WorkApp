@@ -6,8 +6,8 @@
 
 #include <memory>
 
-class RegisterWindowService: public QObject {
-Q_OBJECT
+class RegisterWindowService : public QObject {
+  Q_OBJECT
 public:
   /**
    * @brief Create a default instance of class
@@ -20,11 +20,20 @@ public slots:
    * @brief Called, when register button has been released
    * @param loginText Login text field content
    * @param passwordText Password text field content
+   * @param passwordConfirmationText Password confirmation text field content
    */
-  void onRegisterButtonReleased(const QString &loginText, const QString &passwordText);
+  void onRegisterButtonReleased(const QString &loginText, const QString &passwordText,
+                                const QString &passwordConfirmationText);
 
   /** Called, when back button has been released */
   void onBackButtonReleased();
+
+signals:
+  /** Emit, when register operation has been accepted */
+  void registerAccepted();
+
+  /** Emit when register operation has been canceled */
+  void registerCanceled();
 
 private:
   std::shared_ptr<DataService> dataService;

@@ -18,6 +18,12 @@ Controller::Controller()
   QObject::connect(loginWindowService.get(), &LoginWindowService::loginCanceled, [this]() {
     customDialogService->prepareToDisplay(CustomDialogDataset::Version::LoginError);
   });
+  QObject::connect(registerWindowService.get(), &RegisterWindowService::registerAccepted, [this]() {
+    customDialogService->prepareToDisplay(CustomDialogDataset::Version::RegistrationSuccess);
+  });
+  QObject::connect(registerWindowService.get(), &RegisterWindowService::registerCanceled, [this]() {
+    customDialogService->prepareToDisplay(CustomDialogDataset::Version::RegistrationError);
+  });
 }
 
 void Controller::initialize() {

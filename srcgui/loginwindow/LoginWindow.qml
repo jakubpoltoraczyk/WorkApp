@@ -14,7 +14,7 @@ Window {
     x: (Screen.width - width) / 2
     y: (Screen.height - height) / 2
     color: WindowConstants.defaultWindowColor
-    flags: Qt.Window | Qt.WindowStaysOnTopHint
+    flags: Qt.Window | Qt.FramelessWindowHint
     visible: true
 
     /** Emit, when login button has been released */

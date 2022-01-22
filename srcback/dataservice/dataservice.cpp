@@ -7,8 +7,9 @@ constexpr char DATA_DIRECTORY[] = "data";
 constexpr char LOGIN_DATA_FILE[] = "logindata.json";
 constexpr char CUSTOM_DIALOG_FILE[] = "customdialogdata.json";
 
-constexpr char EXAMPLE[] = "example";
 constexpr char LOGIN_ERROR[] = "login_error";
+constexpr char REGISTRATION_SUCCESS[] = "registration_success";
+constexpr char REGISTRATION_ERROR[] = "registration_error";
 constexpr char TITLE[] = "title";
 constexpr char TEXT[] = "text";
 constexpr char ICON[] = "icon";
@@ -31,15 +32,26 @@ DataService::DataService() : dataDirectory(getDataDirectory()) {
 DataService::OperationResult DataService::requestLogin(const QString &login,
                                                        const QString &password) {
   try {
-    if (loginData.at(login) == password) {
-      // todo: update user dataset according to new login dataset
-      return OperationResult::Success;
-    } else {
+    if (loginData.at(login) != password) {
       return OperationResult::Failure;
     }
+    // todo: update user dataset according to new login dataset
+    return OperationResult::Success;
   } catch (const std::out_of_range &error) {
     return OperationResult::Failure;
   }
+}
+
+DataService::OperationResult DataService::requestRegister(const QString &login,
+                                                          const QString &password,
+                                                          const QString &passwordConfirmation) {
+  if (login.isEmpty() || password.isEmpty() || password != passwordConfirmation ||
+      loginData.find(login) != loginData.end()) {
+    return OperationResult::Failure;
+  }
+  // todo: create user account according to new login dataset
+  loginData.insert({login, password});
+  return OperationResult::Success;
 }
 
 const CustomDialogDataset::DataToDisplay &
@@ -76,8 +88,11 @@ void DataService::updateCustomDialogData(CustomDialogDataset::Version version) {
   case CustomDialogDataset::Version::LoginError:
     deserializeCustomDialogData(LOGIN_ERROR);
     break;
-  case CustomDialogDataset::Version::Example:
-    deserializeCustomDialogData(EXAMPLE);
+  case CustomDialogDataset::Version::RegistrationSuccess:
+    deserializeCustomDialogData(REGISTRATION_SUCCESS);
+    break;
+  case CustomDialogDataset::Version::RegistrationError:
+    deserializeCustomDialogData(REGISTRATION_ERROR);
     break;
   default:
     std::cout << "Unknown type of custom dialog! It will not be displayed";

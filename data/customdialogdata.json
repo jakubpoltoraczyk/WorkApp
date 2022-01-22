@@ -5,10 +5,16 @@
         "icon" : 3,
         "buttons" : [1024]
     },
-    "example" : {
-        "title" : "Example title",
-        "text" : "Example text", 
-        "icon" : 1,
-        "buttons" : [65536, 8388608, 16777216]
+    "registration_success" : {
+        "title" : "Registration success",
+        "text" : "Your account has been just created!",
+        "icon": 1,
+        "buttons" : [1024]
+    },
+    "registration_error" : {
+        "title" : "Registration error",
+        "text" : "You've entered incorrect data or user with selected login already exists",
+        "icon" : 3,
+        "buttons" : [1024]
     }
 }

@@ -14,11 +14,11 @@ Window {
     x: (Screen.width - width) / 2
     y: (Screen.height - height) / 2
     color: WindowConstants.defaultWindowColor
-    flags: Qt.Window | Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint
+    flags: Qt.Window | Qt.FramelessWindowHint
     visible: true
 
     /** Emit, when register button has been released */
-    signal registerButtonReleased(string loginText, string passwordText)
+    signal registerButtonReleased(string loginText, string passwordText, string passwordConfirmationText)
 
     /** Called, when component has been created */
     Component.onCompleted: {
@@ -71,7 +71,9 @@ Window {
 
             /** Called, when register button has been released */
             onReleased: {
-                registerButtonReleased(loginInputComponent.contentText, passwordInputComponent.contentText)
+                registerButtonReleased(loginInputComponent.contentText, 
+                                       passwordInputComponent.contentText, 
+                                       confirmPasswordInputComponent.contentText)
             }
         }
 

@@ -31,13 +31,13 @@ public slots:
   void onExitButtonReleased();
 
 signals:
-  /** Emit, when displaying register window has been requested */
+  /** Emit, when register window should be displayed */
   void registerWindowRequested();
 
-  /** Emit, when login with specified data has been accepted */
+  /** Emit, when login operation has been accepted */
   void loginAccepted();
 
-  /** Emit, when login with specified data has been canceled */
+  /** Emit, when login operation has been canceled */
   void loginCanceled();
 
 private:

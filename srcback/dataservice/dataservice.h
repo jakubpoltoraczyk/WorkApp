@@ -27,6 +27,16 @@ public:
   OperationResult requestLogin(const QString &login, const QString &password);
 
   /**
+   * @brief Provide appropriate operations related to register request
+   * @param login User's login
+   * @param password User's password
+   * @param passwordConfirmation User's password confirmation
+   * @return Success if register request finished successfully, otherwise Failure
+   */
+  OperationResult requestRegister(const QString &login, const QString &password,
+                                  const QString &passwordConfirmation);
+
+  /**
    * @brief Provide custom dialog data to display
    * @param version Version, in which one custom dialog will be displayed
    * @return Custom dialog data to display
