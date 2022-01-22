@@ -12,8 +12,8 @@ QtObject {
     readonly property int defaultButtonSize: 12
 
     /** Path to visibility false eye image used in input component */
-    readonly property string visibilityFalseEyeImagePath: "images/visibilityFalseEye.png"
+    readonly property string visibilityFalseEyeImagePath: "qrc:/srcgui/images/inputcomponent/visibilityFalseEye.png"
 
     /** Path to visiblity true eye image used in input component */
-    readonly property string visibilityTrueEyeImagePath: "images/visibilityTrueEye.png"
+    readonly property string visibilityTrueEyeImagePath: "qrc:/srcgui/images/inputcomponent/visibilityTrueEye.png"
 }

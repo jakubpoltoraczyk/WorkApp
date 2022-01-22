@@ -3,6 +3,7 @@
 #include "../customdialogservice/customdialogservice.h"
 #include "../dataservice/dataservice.h"
 #include "../loginwindowservice/loginwindowservice.h"
+#include "../windowmanager/windowmanager.h"
 
 #include <QObject>
 #include <memory>
@@ -18,6 +19,15 @@ public:
   /** Construct a default instace of class */
   Controller();
 
+  /** Initialize GUI */
+  void initialize();
+
+  /**
+   * @brief Provide window manager object
+   * @return std::shared_ptr to window manager object
+   */
+  std::shared_ptr<WindowManager> getWindowManager() const;
+
   /**
    * @brief Provide service for custom dialog
    * @return std::shared_ptr to custom dialog service
@@ -32,6 +42,7 @@ public:
 
 private:
   std::shared_ptr<DataService> dataService;
+  std::shared_ptr<WindowManager> windowManager;
   std::shared_ptr<CustomDialogService> customDialogService;
   std::shared_ptr<LoginWindowService> loginWindowService;
 };

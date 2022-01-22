@@ -1,13 +1,14 @@
 <RCC>
     <qresource prefix="/">
     <file>srcgui/configuration/ColorConstants.qml</file>
-    <file>srcgui/configuration/CustomDialogConstants.qml</file>
     <file>srcgui/configuration/InputComponentConstants.qml</file>
     <file>srcgui/configuration/qmldir</file>
     <file>srcgui/configuration/SharedConstants.qml</file>
+    <file>srcgui/configuration/WindowManagerConstants.qml</file>
     <file>srcgui/customdialog/CustomDialog.qml</file>
-    <file>srcgui/inputcomponent/images/visibilityFalseEye.png</file>
-    <file>srcgui/inputcomponent/images/visibilityTrueEye.png</file>
+    <file>srcgui/images/inputcomponent/visibilityFalseEye.png</file>
+    <file>srcgui/images/inputcomponent/visibilityTrueEye.png</file>
+    <file>srcgui/images/qtlogo.png</file>
     <file>srcgui/inputcomponent/InputComponent.qml</file>
     <file>srcgui/loginwindow/LoginWindow.qml</file>
     <file>main.qml</file>

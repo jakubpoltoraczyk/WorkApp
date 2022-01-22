@@ -1,6 +1,6 @@
 #include "srcback/controller/controller.h"
-#include "srcback/dataset/customdialogdataset.h"
 #include "srcback/dataset/inputcomponentdataset.h"
+#include "srcback/dataset/windowmanagerdataset.h"
 
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
@@ -11,9 +11,10 @@ void registerDatasets() {
   qmlRegisterUncreatableMetaObject(InputComponentDataset::staticMetaObject, "InputComponentDataset",
                                    1, 0, "InputComponentDataset",
                                    "Couldn't create: object is uncreatable");
-  qmlRegisterUncreatableMetaObject(CustomDialogDataset::staticMetaObject, "CustomDialogDataset", 1,
-                                   0, "CustomDialogDataset",
+  qmlRegisterUncreatableMetaObject(WindowManagerDataset::staticMetaObject, "WindowManagerDataset",
+                                   1, 0, "WindowManagerDataset",
                                    "Couldn't create: object is uncreatable");
+  qRegisterMetaType<WindowManagerDataset::WindowType>();
 }
 } // namespace
 
@@ -24,6 +25,7 @@ int main(int argc, char *argv[]) {
 
   Controller controller;
 
+  engine.rootContext()->setContextProperty("windowManager", controller.getWindowManager().get());
   engine.rootContext()->setContextProperty("customDialogService",
                                            controller.getCustomDialogService().get());
   engine.rootContext()->setContextProperty("loginWindowService",
@@ -31,7 +33,9 @@ int main(int argc, char *argv[]) {
 
   registerDatasets();
 
-  engine.load(QUrl(QStringLiteral("qrc:/srcgui/loginwindow/LoginWindow.qml")));
+  engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+
+  controller.initialize();
 
   return engine.rootObjects().isEmpty() ? -1 : app.exec();
 }

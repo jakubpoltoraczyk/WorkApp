@@ -6,9 +6,6 @@
 
 /** Contains custom dialog dataset */
 namespace CustomDialogDataset {
-Q_NAMESPACE
-Q_CLASSINFO("RegisterEnumClassesUnscoped", "false")
-
 /** Enumeration related to available custom dialog version */
 enum class Version { LoginError, Example };
 
@@ -20,5 +17,4 @@ struct DataToDisplay {
   QVector<QMessageBox::StandardButton>
       buttonTypes; ///< Button types to display in custom dialog component
 };
-
 } // namespace CustomDialogDataset
