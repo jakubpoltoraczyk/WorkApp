@@ -2,8 +2,10 @@
 
 #include <iostream>
 
-LoginWindowService::LoginWindowService(std::shared_ptr<DataService> dataServiceObject)
-    : dataService(dataServiceObject) {}
+LoginWindowService::LoginWindowService(
+    std::shared_ptr<DataService> dataServiceObject,
+    std::shared_ptr<CustomDialogService> customDialogServiceObject)
+    : dataService(dataServiceObject), customDialogService(customDialogServiceObject) {}
 
 void LoginWindowService::onRegisterButtonReleased() { emit registerWindowRequested(); }
 
@@ -12,11 +14,8 @@ void LoginWindowService::onLoginButtonReleased(const QString &loginText,
   if (dataService->requestLogin(loginText, passwordText) == DataService::OperationResult::Success) {
     emit loginAccepted();
   } else {
-    emit loginCanceled();
+    customDialogService->prepareToDisplay(CustomDialogDataset::Version::LoginError);
   }
 }
 
-void LoginWindowService::onExitButtonReleased() {
-  // todo: find better way to safely close whole application
-  exit(0);
-}
+void LoginWindowService::onExitButtonReleased() { emit deleteWindow(); }

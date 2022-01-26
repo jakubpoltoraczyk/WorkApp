@@ -13,7 +13,13 @@
     },
     "registration_error" : {
         "title" : "Registration error",
-        "text" : "You've entered incorrect data or user with selected login already exists",
+        "text" : "User with selected login already exists",
+        "icon" : 3,
+        "buttons" : [1024]
+    },
+    "registration_invalid_data" : {
+        "title" : "Registration invalid data",
+        "text" : "You've entered incorrect data",
         "icon" : 3,
         "buttons" : [1024]
     }

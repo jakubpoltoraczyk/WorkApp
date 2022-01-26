@@ -1,19 +1,23 @@
 #pragma once
 
+#include "../customdialogservice/customdialogservice.h"
 #include "../dataservice/dataservice.h"
 
 #include <QObject>
 
 #include <memory>
 
+/** Class, which provides service functionalities of register window */
 class RegisterWindowService : public QObject {
   Q_OBJECT
 public:
   /**
    * @brief Create a default instance of class
    * @param dataService Service for dataset operation
+   * @param customDialogServiceObject Service for custom dialog
    */
-  RegisterWindowService(std::shared_ptr<DataService> dataServiceObject);
+  RegisterWindowService(std::shared_ptr<DataService> dataServiceObject,
+                        std::shared_ptr<CustomDialogService> customDialogServiceObject);
 
 public slots:
   /**
@@ -29,12 +33,13 @@ public slots:
   void onBackButtonReleased();
 
 signals:
-  /** Emit, when register operation has been accepted */
+  /** Emitted, when register has been accepted */
   void registerAccepted();
 
-  /** Emit when register operation has been canceled */
-  void registerCanceled();
+  /** Emitted, when window should be deleted */
+  void deleteWindow();
 
 private:
   std::shared_ptr<DataService> dataService;
+  std::shared_ptr<CustomDialogService> customDialogService;
 };

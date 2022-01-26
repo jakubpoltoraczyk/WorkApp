@@ -10,6 +10,8 @@ constexpr char CUSTOM_DIALOG_FILE[] = "customdialogdata.json";
 constexpr char LOGIN_ERROR[] = "login_error";
 constexpr char REGISTRATION_SUCCESS[] = "registration_success";
 constexpr char REGISTRATION_ERROR[] = "registration_error";
+constexpr char REGISTRATION_INVALID_DATA[] = "registration_invalid_data";
+
 constexpr char TITLE[] = "title";
 constexpr char TEXT[] = "text";
 constexpr char ICON[] = "icon";
@@ -43,10 +45,8 @@ DataService::OperationResult DataService::requestLogin(const QString &login,
 }
 
 DataService::OperationResult DataService::requestRegister(const QString &login,
-                                                          const QString &password,
-                                                          const QString &passwordConfirmation) {
-  if (login.isEmpty() || password.isEmpty() || password != passwordConfirmation ||
-      loginData.find(login) != loginData.end()) {
+                                                          const QString &password) {
+  if (loginData.find(login) != loginData.end()) {
     return OperationResult::Failure;
   }
   // todo: create user account according to new login dataset
@@ -84,15 +84,19 @@ void DataService::updateLoginData() {
 }
 
 void DataService::updateCustomDialogData(CustomDialogDataset::Version version) {
+  using CustomDialogDataset::Version;
   switch (version) {
-  case CustomDialogDataset::Version::LoginError:
+  case Version::LoginError:
     deserializeCustomDialogData(LOGIN_ERROR);
     break;
-  case CustomDialogDataset::Version::RegistrationSuccess:
+  case Version::RegistrationSuccess:
     deserializeCustomDialogData(REGISTRATION_SUCCESS);
     break;
-  case CustomDialogDataset::Version::RegistrationError:
+  case Version::RegistrationError:
     deserializeCustomDialogData(REGISTRATION_ERROR);
+    break;
+  case Version::RegistrationInvalidData:
+    deserializeCustomDialogData(REGISTRATION_INVALID_DATA);
     break;
   default:
     std::cout << "Unknown type of custom dialog! It will not be displayed";

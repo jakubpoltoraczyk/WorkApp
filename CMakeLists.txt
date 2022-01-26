@@ -12,7 +12,6 @@ add_executable(${PROJECT_NAME}
     srcback/dataservice/dataservice.cpp
     srcback/loginwindowservice/loginwindowservice.cpp
     srcback/registerwindowservice/registerwindowservice.cpp
-    srcback/windowmanager/windowmanager.cpp
     main.cpp
 
     srcback/controller/controller.h

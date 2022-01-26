@@ -1,5 +1,6 @@
 #pragma once
 
+#include "../customdialogservice/customdialogservice.h"
 #include "../dataservice/dataservice.h"
 
 #include <QObject>
@@ -13,8 +14,10 @@ public:
   /**
    * @brief Create new instance of class
    * @param dataServiceObject Service for dataset operations
+   * @param customDialogServiceObject Service for custom dialog
    */
-  LoginWindowService(std::shared_ptr<DataService> dataServiceObject);
+  LoginWindowService(std::shared_ptr<DataService> dataServiceObject,
+                     std::shared_ptr<CustomDialogService> customDialogServiceObject);
 
 public slots:
   /** Called, when register button has been released*/
@@ -31,15 +34,16 @@ public slots:
   void onExitButtonReleased();
 
 signals:
-  /** Emit, when register window should be displayed */
+  /** Emitted, when register window should be displayed */
   void registerWindowRequested();
 
-  /** Emit, when login operation has been accepted */
+  /** Emitted, when login operation has been accepted */
   void loginAccepted();
 
-  /** Emit, when login operation has been canceled */
-  void loginCanceled();
+  /** Emitted, when window should be deleted */
+  void deleteWindow();
 
 private:
   std::shared_ptr<DataService> dataService;
+  std::shared_ptr<CustomDialogService> customDialogService;
 };

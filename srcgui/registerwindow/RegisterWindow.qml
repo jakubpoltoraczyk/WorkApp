@@ -17,7 +17,7 @@ Window {
     flags: Qt.Window | Qt.FramelessWindowHint
     visible: true
 
-    /** Emit, when register button has been released */
+    /** Emitted, when register button has been released */
     signal registerButtonReleased(string loginText, string passwordText, string passwordConfirmationText)
 
     /** Called, when component has been created */

@@ -7,7 +7,7 @@
 /** Contains custom dialog dataset */
 namespace CustomDialogDataset {
 /** Enumeration related to available custom dialog version */
-enum class Version { LoginError, RegistrationSuccess, RegistrationError };
+enum class Version { LoginError, RegistrationSuccess, RegistrationError, RegistrationInvalidData };
 
 /** Contains data to display in custom dialog component */
 struct DataToDisplay {

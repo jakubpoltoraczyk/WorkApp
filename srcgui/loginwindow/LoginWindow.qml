@@ -17,7 +17,7 @@ Window {
     flags: Qt.Window | Qt.FramelessWindowHint
     visible: true
 
-    /** Emit, when login button has been released */
+    /** Emitted, when login button has been released */
     signal loginButtonReleased(string loginText, string passwordText)
 
     /** Called, when component has been created */

@@ -11,36 +11,83 @@ Window {
     x: (Screen.width - width) / 2
     y: (Screen.height - height) / 2
     flags: Qt.SplashScreen
+    visible: true
+
+    /** Map, which links window types with existing windows */
+    property var windows: (new Map())
+
+    /**
+     * @brief Hide window of specified type
+     * @param type:WindowType windowType Type of the window, which will be hidden
+    */
+    function hideWindow(windows, windowType) {
+        if(!windows.has(windowType)) {
+            return
+        }
+        windows.get(windowType).visible = false
+    }
+
+    /**
+     * @brief Show window of specified type
+     * @param type:WindowType windowType Type of the window, which will be displayed
+    */
+    function showWindow(windows, windowType) {
+        if(!windows.has(windowType)) {
+            return
+        }
+        windows.get(windowType).visible = true
+    }
 
     /** 
-     * @brief Create new window component using specified window type
-     * @param type:WindowType windowType Type of the window, which will be created 
+     * @brief Create new window of specified type
+     * @param type:Map windows Map, which links window types with existing windows
+     * @param type:WindowType windowType Type of the window, which will be created
+     * @return Updated map of existing windows
      */
-    function createWindowComponent(windowType) {
-        var component = Qt.createComponent(WindowManagerConstants.windowSources.get(windowType))
-        if(component.status == Component.Ready) {
-            component.createObject(splashScreen)
-        } else {
-            console.log("Error loading component: ", component.errorString())
+    function createWindow(windows, windowType) {
+        if(!windows.has(windowType)) {
+            var component = Qt.createComponent(WindowManagerConstants.windowSources.get(windowType))
+            var object = component.createObject(splashScreen)
+            windows.set(windowType, object)
         }
+        return windows
+    }
+
+    /**
+     * @brief Delete existing window of specified type
+     * @param type:Map windows Map, which links window types with existing windows
+     * @param type:WindowType windowType Type of the window, which will be removed
+     * @return Updated map of existing windows
+    */
+    function deleteWindow(windows, windowType) {
+        if(windows.has(windowType)) {
+            windows.get(windowType).destroy()
+            windows.delete(windowType)
+        }
+        return windows
     }
 
     Connections {
         target: windowManager
 
-        /** Called, when splash screen should be hidden */
-        onHideSplashScreen: {
-            splashScreen.visible = false
+        /** Called, when specified window should be displayed */
+        onShowWindow: {
+            showWindow(windows, windowType)
         }
 
-        /** Called, when splash screen should be displayed */
-        onShowSplashScreen: {
-            splashScreen.visible = true
+        /** Called, when specified window should be hidden */
+        onHideWindow: {
+            hideWindow(windows, windowType)
         }
 
         /** Called, when new window should be created */
         onCreateWindow: {
-            createWindowComponent(windowType)
+            windows = createWindow(windows, windowType)
+        }
+
+        /** Called, when specified window should be removed */
+        onDeleteWindow: {
+            windows = deleteWindow(windows, windowType)
         }
     }
 

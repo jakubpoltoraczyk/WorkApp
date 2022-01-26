@@ -28,7 +28,7 @@ public slots:
 
 signals:
   /**
-   * @brief Emit, when custom dialog component is ready to display
+   * @brief Emitted, when custom dialog component is ready to display
    * @param titleText Title text to set in custom dialog
    * @param contentText Content text to set in custom dialog
    * @param iconType Icon type to set in custom dialog

@@ -8,26 +8,32 @@ Controller::Controller()
     : dataService(std::make_shared<DataService>()),
       windowManager(std::make_shared<WindowManager>()),
       customDialogService(std::make_shared<CustomDialogService>(dataService)),
-      loginWindowService(std::make_shared<LoginWindowService>(dataService)),
-      registerWindowService(std::make_shared<RegisterWindowService>(dataService)) {
-  QObject::connect(
-      loginWindowService.get(), &LoginWindowService::registerWindowRequested,
-      [this]() { windowManager->createWindow(WindowManagerDataset::WindowType::RegisterWindow); });
-  QObject::connect(loginWindowService.get(), &LoginWindowService::loginAccepted,
-                   [this]() { windowManager->hideSplashScreen(); });
-  QObject::connect(loginWindowService.get(), &LoginWindowService::loginCanceled, [this]() {
-    customDialogService->prepareToDisplay(CustomDialogDataset::Version::LoginError);
+      loginWindowService(std::make_shared<LoginWindowService>(dataService, customDialogService)),
+      registerWindowService(
+          std::make_shared<RegisterWindowService>(dataService, customDialogService)) {
+  QObject::connect(loginWindowService.get(), &LoginWindowService::registerWindowRequested,
+                   [this]() {
+                     windowManager->createWindow(WindowManagerDataset::WindowType::RegisterWindow);
+                     windowManager->hideWindow(WindowManagerDataset::WindowType::LoginWindow);
+                   });
+  QObject::connect(loginWindowService.get(), &LoginWindowService::loginAccepted, [this]() {
+    windowManager->deleteWindow(WindowManagerDataset::WindowType::LoginWindow);
+  });
+  QObject::connect(loginWindowService.get(), &LoginWindowService::deleteWindow, [this]() {
+    windowManager->deleteWindow(WindowManagerDataset::WindowType::LoginWindow);
+    exit(0);
   });
   QObject::connect(registerWindowService.get(), &RegisterWindowService::registerAccepted, [this]() {
-    customDialogService->prepareToDisplay(CustomDialogDataset::Version::RegistrationSuccess);
+    windowManager->deleteWindow(WindowManagerDataset::WindowType::RegisterWindow);
+    windowManager->showWindow(WindowManagerDataset::WindowType::LoginWindow);
   });
-  QObject::connect(registerWindowService.get(), &RegisterWindowService::registerCanceled, [this]() {
-    customDialogService->prepareToDisplay(CustomDialogDataset::Version::RegistrationError);
+  QObject::connect(registerWindowService.get(), &RegisterWindowService::deleteWindow, [this]() {
+    windowManager->deleteWindow(WindowManagerDataset::WindowType::ExampleWindow);
+    windowManager->showWindow(WindowManagerDataset::WindowType::LoginWindow);
   });
 }
 
 void Controller::initialize() {
-  windowManager->showSplashScreen();
   windowManager->createWindow(WindowManagerDataset::WindowType::LoginWindow);
 }
 
