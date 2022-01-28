@@ -15,7 +15,7 @@ void RegisterWindowService::onRegisterButtonReleased(const QString &loginText,
     customDialogService->prepareToDisplay(CustomDialogDataset::Version::RegistrationInvalidData);
     return;
   }
-  if (dataService->requestRegister(loginText, passwordText) ==
+  if (dataService->requestRegister(loginText.toStdString(), passwordText.toStdString()) ==
       DataService::OperationResult::Success) {
     customDialogService->prepareToDisplay(CustomDialogDataset::Version::RegistrationSuccess);
     emit registerAccepted();

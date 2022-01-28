@@ -6,8 +6,8 @@
 
 #include <filesystem>
 #include <fstream>
-#include <map>
 #include <nlohmann/json.hpp>
+#include <unordered_map>
 
 /** Class, which represents service for dataset operations */
 class DataService {
@@ -24,7 +24,7 @@ public:
    * @param password User's password
    * @return Success if login request finished successfully, otherwise Failure
    */
-  OperationResult requestLogin(const QString &login, const QString &password);
+  OperationResult requestLogin(const std::string &login, const std::string &password);
 
   /**
    * @brief Provide appropriate operations related to register request
@@ -32,7 +32,7 @@ public:
    * @param password User's password
    * @return Success if register request finished successfully, otherwise Failure
    */
-  OperationResult requestRegister(const QString &login, const QString &password);
+  OperationResult requestRegister(const std::string &login, const std::string &password);
 
   /**
    * @brief Provide custom dialog data to display
@@ -64,22 +64,14 @@ private:
    */
   nlohmann::json getJsonObject(const std::string &fileName) const;
 
-  /** Update login data */
+  /** Deserialize and update login data */
   void updateLoginData();
 
   /**
-   * @brief Update custom dialog data
-   * @details It uses @see deserializeCustomDialogData method to deserialize
-   * appropriate data
+   * @brief Deserialize and update custom dialog data
    * @param version Version, in which one custom dialog data will be updated
    */
   void updateCustomDialogData(CustomDialogDataset::Version version);
-
-  /**
-   * @brief Deserialize custom dialog data
-   * @param keyValue Key value used to get appropriate data from JSON object
-   */
-  void deserializeCustomDialogData(const std::string &keyValue);
 
   /** Contains JSON objects, which can be used several times during app life */
   struct JsonObjects {
@@ -87,7 +79,8 @@ private:
     nlohmann::json customDialogDataJson; ///< JSON object related to custom dialog data
   } jsonObjects;
 
-  std::filesystem::path dataDirectory;                 ///< Contains data directory path
-  std::map<QString, QString> loginData;                ///< Contains login data (login and password)
+  std::filesystem::path dataDirectory; ///< Contains data directory path
+  std::unordered_map<std::string, std::string>
+      loginData;                                       ///< Contains login data (login and password)
   CustomDialogDataset::DataToDisplay customDialogData; ///< Contains custom dialog data
 };
