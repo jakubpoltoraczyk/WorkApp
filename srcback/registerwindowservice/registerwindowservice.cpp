@@ -5,7 +5,7 @@
 RegisterWindowService::RegisterWindowService(
     std::shared_ptr<DataService> dataServiceObject,
     std::shared_ptr<CustomDialogService> customDialogServiceObject)
-    : dataService(dataServiceObject), customDialogService(customDialogServiceObject) {}
+    : WindowService(dataServiceObject, customDialogServiceObject) {}
 
 void RegisterWindowService::onRegisterButtonReleased(const QString &loginText,
                                                      const QString &passwordText,
@@ -24,4 +24,4 @@ void RegisterWindowService::onRegisterButtonReleased(const QString &loginText,
   }
 }
 
-void RegisterWindowService::onBackButtonReleased() { emit deleteWindow(); }
+void RegisterWindowService::onBackButtonReleased() { emit closeWindowRequested(); }

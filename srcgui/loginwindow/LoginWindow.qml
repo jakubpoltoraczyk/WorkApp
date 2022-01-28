@@ -24,7 +24,7 @@ Window {
     Component.onCompleted: {
         registerButton.released.connect(loginWindowService.onRegisterButtonReleased)
         loginButtonReleased.connect(loginWindowService.onLoginButtonReleased)
-        exitButton.released.connect(loginWindowService.onExitButtonReleased)
+        exitButton.released.connect(loginWindowService.onBackButtonReleased)
     }
 
     Column {

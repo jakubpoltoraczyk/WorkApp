@@ -1,14 +1,13 @@
 #pragma once
 
-#include "../customdialogservice/customdialogservice.h"
-#include "../dataservice/dataservice.h"
+#include "../windowservice/windowservice.h"
 
 #include <QObject>
 
 #include <memory>
 
 /** Class, which provides service functionalities of login window */
-class LoginWindowService : public QObject {
+class LoginWindowService : public WindowService {
   Q_OBJECT
 public:
   /**
@@ -20,6 +19,9 @@ public:
                      std::shared_ptr<CustomDialogService> customDialogServiceObject);
 
 public slots:
+  /** Called, when back button has been released */
+  void onBackButtonReleased() override;
+
   /** Called, when register button has been released*/
   void onRegisterButtonReleased();
 
@@ -30,9 +32,6 @@ public slots:
    */
   void onLoginButtonReleased(const QString &loginText, const QString &passwordText);
 
-  /** Called, when exit button has been released */
-  void onExitButtonReleased();
-
 signals:
   /** Emitted, when register window should be displayed */
   void registerWindowRequested();
@@ -40,10 +39,6 @@ signals:
   /** Emitted, when login operation has been accepted */
   void loginAccepted();
 
-  /** Emitted, when window should be deleted */
-  void deleteWindow();
-
-private:
-  std::shared_ptr<DataService> dataService;
-  std::shared_ptr<CustomDialogService> customDialogService;
+  /** Emitted, when application should be closed */
+  void closeApplicationRequested();
 };

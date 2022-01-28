@@ -1,11 +1,9 @@
 #include "loginwindowservice.h"
 
-#include <iostream>
-
 LoginWindowService::LoginWindowService(
     std::shared_ptr<DataService> dataServiceObject,
     std::shared_ptr<CustomDialogService> customDialogServiceObject)
-    : dataService(dataServiceObject), customDialogService(customDialogServiceObject) {}
+    : WindowService(dataServiceObject, customDialogServiceObject) {}
 
 void LoginWindowService::onRegisterButtonReleased() { emit registerWindowRequested(); }
 
@@ -18,4 +16,4 @@ void LoginWindowService::onLoginButtonReleased(const QString &loginText,
   }
 }
 
-void LoginWindowService::onExitButtonReleased() { emit deleteWindow(); }
+void LoginWindowService::onBackButtonReleased() { emit closeApplicationRequested(); }

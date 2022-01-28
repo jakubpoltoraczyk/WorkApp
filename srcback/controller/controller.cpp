@@ -19,7 +19,7 @@ Controller::Controller()
   QObject::connect(loginWindowService.get(), &LoginWindowService::loginAccepted, [this]() {
     windowManager->deleteWindow(WindowManagerDataset::WindowType::LoginWindow);
   });
-  QObject::connect(loginWindowService.get(), &LoginWindowService::deleteWindow, [this]() {
+  QObject::connect(loginWindowService.get(), &LoginWindowService::closeApplicationRequested, [this]() {
     windowManager->deleteWindow(WindowManagerDataset::WindowType::LoginWindow);
     exit(0);
   });
@@ -27,8 +27,8 @@ Controller::Controller()
     windowManager->deleteWindow(WindowManagerDataset::WindowType::RegisterWindow);
     windowManager->showWindow(WindowManagerDataset::WindowType::LoginWindow);
   });
-  QObject::connect(registerWindowService.get(), &RegisterWindowService::deleteWindow, [this]() {
-    windowManager->deleteWindow(WindowManagerDataset::WindowType::ExampleWindow);
+  QObject::connect(registerWindowService.get(), &RegisterWindowService::closeWindowRequested, [this]() {
+    windowManager->deleteWindow(WindowManagerDataset::WindowType::RegisterWindow);
     windowManager->showWindow(WindowManagerDataset::WindowType::LoginWindow);
   });
 }

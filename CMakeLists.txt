@@ -23,6 +23,7 @@ add_executable(${PROJECT_NAME}
     srcback/loginwindowservice/loginwindowservice.h
     srcback/registerwindowservice/registerwindowservice.h
     srcback/windowmanager/windowmanager.h
+    srcback/windowservice/windowservice.h
 
     qml.qrc
 )
