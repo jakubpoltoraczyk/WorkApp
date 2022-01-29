@@ -4,7 +4,7 @@
 
 namespace {
 /** JSON file names */
-constexpr char DATA_DIRECTORY[] = "data";
+constexpr char DATA_DIRECTORY[] = "data/";
 constexpr char LOGIN_DATA_FILE[] = "logindata.json";
 constexpr char CUSTOM_DIALOG_FILE[] = "customdialogdata.json";
 
@@ -22,9 +22,9 @@ const std::unordered_map<CustomDialogDataset::Version, std::string> CUSTOM_DIALO
     {CustomDialogDataset::Version::RegistrationInvalidData, "registration_invalid_data"}};
 
 std::filesystem::path getDataDirectory() {
-  auto mainDirectory = std::filesystem::current_path().parent_path();
-  mainDirectory.append(DATA_DIRECTORY);
-  return mainDirectory;
+  auto dataDirectory = std::filesystem::current_path().parent_path();
+  dataDirectory.append(DATA_DIRECTORY);
+  return dataDirectory;
 }
 } // namespace
 
@@ -65,19 +65,18 @@ DataService::getCustomDialogData(CustomDialogDataset::Version version) {
 }
 
 std::ifstream DataService::getJsonFileToRead(const std::string &fileName) const {
-  auto jsonFile = dataDirectory;
-  jsonFile.append(fileName);
-  return jsonFile;
+  auto filePath = dataDirectory.string() + fileName;
+  return std::ifstream(filePath);
 }
 
 std::ofstream DataService::getJsonFileToSave(const std::string &fileName) const {
-  auto jsonFile = dataDirectory;
-  jsonFile.append(fileName);
-  return jsonFile;
+  auto filePath = dataDirectory.string() + fileName;
+  return std::ofstream(filePath);
 }
 
 nlohmann::json DataService::getJsonObject(const std::string &fileName) const {
-  return nlohmann::json::parse(getJsonFileToRead(fileName));
+  auto jsonFile = getJsonFileToRead(fileName);
+  return nlohmann::json::parse(jsonFile);
 }
 
 void DataService::updateLoginData() {
@@ -88,15 +87,14 @@ void DataService::updateLoginData() {
 
 void DataService::updateCustomDialogData(CustomDialogDataset::Version version) {
   const std::string keyValue = CUSTOM_DIALOG_VERSIONS.at(version);
+  const auto &jsonObject = jsonObjects.customDialogDataJson;
 
-  customDialogData.title =
-      QString::fromStdString(jsonObjects.customDialogDataJson[keyValue][TITLE]);
-  customDialogData.text = QString::fromStdString(jsonObjects.customDialogDataJson[keyValue][TEXT]);
-  customDialogData.iconType =
-      static_cast<QMessageBox::Icon>(jsonObjects.customDialogDataJson[keyValue][ICON]);
+  customDialogData.title = QString::fromStdString(jsonObject[keyValue][TITLE]);
+  customDialogData.text = QString::fromStdString(jsonObject[keyValue][TEXT]);
+  customDialogData.iconType = static_cast<QMessageBox::Icon>(jsonObject[keyValue][ICON]);
 
   customDialogData.buttonTypes.clear();
-  for (const auto &button : jsonObjects.customDialogDataJson[keyValue][BUTTONS]) {
+  for (const auto &button : jsonObject[keyValue][BUTTONS]) {
     customDialogData.buttonTypes.append(static_cast<QMessageBox::StandardButton>(button));
   }
 }
